@@ -60,13 +60,15 @@ public class Conversor {
                     System.out
                             .println("Por favor, ingrese el número decimal a representar en 3 dígitos hexadecimales:");
                     int decimal;
-                    try {
-                        decimal = scanner.nextInt();
-                    } catch (NumberFormatException e) {
-                        System.out.println("El número ingresado no es un número decimal.");
+                    if (!scanner.hasNextInt()) {
+                        System.out.println("La opción ingresada no es un número.");
+                        scanner.nextLine();
                         continue;
                     }
-                    if (decimal > 0 && decimal < 4096) {
+
+                    decimal = scanner.nextInt();
+                    scanner.nextLine();
+                    if (decimal > -1 && decimal < 4096) {
                         String hex;
                         try {
                             hex = Integer.toHexString(decimal).toUpperCase();
